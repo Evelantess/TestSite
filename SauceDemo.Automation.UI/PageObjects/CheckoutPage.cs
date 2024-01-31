@@ -1,5 +1,8 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using SauceDemo.Automation.UI.Utils;
+using SeleniumExtras.WaitHelpers;
+using OpenQA.Selenium.Support.UI;
 
 namespace SauceDemo.Automation.UI.PageObjects
 {
@@ -30,7 +33,12 @@ namespace SauceDemo.Automation.UI.PageObjects
 
         public void FinishCheckout()
         {
-            FinishButton.Click();
+            CustomWait.WaitInstance.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(".btn_action.cart_button"))).Click();
+        }
+
+        public bool IsCheckoutComplete()
+        {
+            return CustomWait.WaitInstance.Until(ExpectedConditions.UrlContains("checkout-complete.html"));
         }
     }
 }

@@ -1,5 +1,8 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using SauceDemo.Automation.UI.Utils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SauceDemo.Automation.UI.PageObjects
 {
@@ -26,7 +29,7 @@ namespace SauceDemo.Automation.UI.PageObjects
 
         public bool IsProductInCart(string productName)
         {
-            var cartItems = Wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector(".cart_item")));
+            var cartItems = CustomWait.WaitForAllElementsOrEmpty(By.CssSelector(".cart_item"));
 
             // Check if the exact product is in the cart
             return cartItems.Any(item => item.Text.Contains(productName));

@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using SauceDemo.Automation.UI.Utils;
 
 namespace SauceDemo.Automation.UI.PageObjects
 {
@@ -35,12 +36,12 @@ namespace SauceDemo.Automation.UI.PageObjects
 
         public bool IsLoggedIn()
         {
-            return Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("inventory_filter_container"))).Displayed;
+            return CustomWait.WaitForElementToBeDisplayed(By.Id("inventory_container"));
         }
 
         public bool IsLoggedOut()
         {
-            return Wait.Unti(ExpectedConditions.ElementIsVisible(LoginButton)).Displayed);
+            return CustomWait.WaitForElementToBeDisplayed(LoginButton);
         }
     }
 }
